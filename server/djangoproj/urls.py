@@ -13,4 +13,5 @@ urlpatterns = [
     path('login', index, name='login'),
     path('register', index, name='register'),
     path('dealer/<int:dealer_id>', index, name='dealer_details_page'),
+    path('postreview/<int:dealer_id>', index, name='postreview_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

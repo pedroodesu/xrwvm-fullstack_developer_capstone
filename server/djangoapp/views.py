@@ -11,7 +11,7 @@ from .restapis import get_request, analyze_review_sentiments, post_review
 logger = logging.getLogger(__name__)
 
 
-def index(request):
+def index(request, **kwargs):
     return render(request, 'react.html')
 
 
