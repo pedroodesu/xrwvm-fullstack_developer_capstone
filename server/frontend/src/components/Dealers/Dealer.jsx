@@ -7,17 +7,12 @@ import neutral_icon from "../assets/neutral.png"
 import negative_icon from "../assets/negative.png"
 import review_icon from "../assets/reviewbutton.png"
 import Header from '../Header/Header';
-
 const Dealer = () => {
-
-
   const [dealer, setDealer] = useState({});
   const [reviews, setReviews] = useState([]);
   const [unreviewed, setUnreviewed] = useState(false);
   const [postReview, setPostReview] = useState(<></>)
-
-  let curr_url = window.location.href;
-  let root_url = curr_url.substring(0,curr_url.indexOf("dealer"));
+  let root_url = window.location.origin + "/";
   let params = useParams();
   let id =params.id;
   let dealer_url = root_url+`djangoapp/dealer/${id}`;
@@ -35,7 +30,6 @@ const Dealer = () => {
       setDealer(dealerobjs[0])
     }
   }
-
   const get_reviews = async ()=>{
     const res = await fetch(reviews_url, {
       method: "GET"
@@ -50,24 +44,19 @@ const Dealer = () => {
       }
     }
   }
-
   const senti_icon = (sentiment)=>{
     let icon = sentiment === "positive"?positive_icon:sentiment==="negative"?negative_icon:neutral_icon;
     return icon;
   }
-
   useEffect(() => {
     get_dealer();
     get_reviews();
     if(sessionStorage.getItem("username")) {
       setPostReview(<a href={post_review}><img src={review_icon} style={{width:'10%',marginLeft:'10px',marginTop:'10px'}} alt='Post Review'/></a>)
-
       
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);  
-
-
 return(
   <div style={{margin:"20px"}}>
       <Header/>
@@ -91,4 +80,4 @@ return(
 )
 }
 
-export default Dealer
+export default Dealer;

@@ -1,8 +1,8 @@
 import os
 import requests
 from dotenv import load_dotenv
-
 load_dotenv()
+
 backend_url = os.getenv(
     'backend_url', default="http://localhost:3030")
 sentiment_analyzer_url = os.getenv(
@@ -20,8 +20,8 @@ def get_request(endpoint, **kwargs):
     try:
         response = requests.get(request_url, timeout=10)
         return response.json()
-    except Exception:
-        print("Network exception occurred")
+    except Exception as e:
+        print("Network exception occurred: {}".format(repr(e)))
         return None
 
 
@@ -30,8 +30,8 @@ def analyze_review_sentiments(text):
     try:
         response = requests.get(request_url, timeout=10)
         return response.json()
-    except Exception:
-        print("Network exception occurred")
+    except Exception as e:
+        print("Network exception occurred: {}".format(repr(e)))
         return None
 
 
@@ -40,6 +40,6 @@ def post_review(data_dict):
     try:
         response = requests.post(request_url, json=data_dict, timeout=10)
         return response.json()
-    except Exception:
-        print("Network exception occurred")
+    except Exception as e:
+        print("Network exception occurred: {}".format(repr(e)))
         return None
