@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentiment-analyzer
+  labels:
+    app: sentiment-analyzer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentiment-analyzer
+  template:
+    metadata:
+      labels:
+        app: sentiment-analyzer
+    spec:
+      containers:
+        - name: sentiment-analyzer
+          image: us.icr.io/sn-labs-scontatopedr/sentiment-analyzer:latest
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: icr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentiment-analyzer-service
+spec:
+  type: NodePort
+  selector:
+    app: sentiment-analyzer
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
