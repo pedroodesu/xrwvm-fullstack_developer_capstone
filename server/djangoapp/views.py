@@ -1,15 +1,18 @@
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth import login, logout, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from django.contrib import messages
-from datetime import datetime
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
 
 logger = logging.getLogger(__name__)
+
+
+def index(request):
+    return render(request, 'react.html')
 
 
 @csrf_exempt
