@@ -21,7 +21,7 @@ spec:
             - containerPort: 5000
           imagePullPolicy: Always
       imagePullSecrets:
-        - name: icr-secret
+        - name: icr
 ---
 apiVersion: v1
 kind: Service

@@ -1,0 +1,18 @@
+[MASTER]
+ignore=migrations
+init-hook='import sys; sys.path.append(".")'
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods,
+    import-error,
+    wrong-import-order,
+    consider-using-f-string,
+    broad-exception-caught,
+    invalid-name,
+    import-outside-toplevel,
+    no-else-return
+
+[FORMAT]
+max-line-length=120
